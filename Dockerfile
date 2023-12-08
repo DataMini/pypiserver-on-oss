@@ -36,5 +36,7 @@ ENV ACCESS_KEY_SECRET=
 # 设置工作目录
 WORKDIR /packages
 
+EXPOSE 8080
+
 # 配置启动命令
 CMD ["/usr/bin/supervisord"]
