@@ -1,6 +1,7 @@
-# pypiserver-with-oss
-一个使用阿里云OSS作为后端存储的PyPi Server服务器
+# Pypi Server on Aliyun OSS 
+[![Build and push Docker image](https://github.com/DataMini/pypiserver-on-oss/actions/workflows/docker-image-builder.yml/badge.svg)](https://github.com/DataMini/pypiserver-on-oss/actions/workflows/docker-image-builder.yml)
 
+一个使用阿里云 OSS 作为后端文件存储的 Python 包管理服务器（PyPi Server），简单，上手容易
 
 ## 如何运行
 

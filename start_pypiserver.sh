@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 检查用户名和密码环境变量是否设置
-if [ -n "$PYPISERVER_USER" ] && [ -n "$PYPISERVER_PASS" ]; then
+if [ -n "$PYPISERVER_USER" ] && [ -n "$PYPISERVER_PASSWORD" ]; then
     # 创建 htpasswd 文件
     htpasswd -cb /auth/htpasswd $PYPISERVER_USER $PYPISERVER_PASSWORD
     # 启动 pypiserver 带有认证
