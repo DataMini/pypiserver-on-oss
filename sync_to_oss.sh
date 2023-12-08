@@ -12,7 +12,7 @@ ossutil config -e $OSS_ENDPOINT -i $OSS_ACCESS_KEY_ID -k $OSS_ACCESS_KEY_SECRET 
 # 循环同步
 while true; do
     # 同步数据到 OSS
-    ossutil sync $PYPISERVER_PATH $OSS_BUCKET_PATH --delete
+    ossutil sync $PYPISERVER_PATH $OSS_BUCKET_PATH --delete --force
 
     # 等待一定时间
     sleep $OSS_CYNC_INTERVAL
