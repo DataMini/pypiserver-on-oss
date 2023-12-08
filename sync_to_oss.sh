@@ -15,5 +15,5 @@ while true; do
     ossutil sync $PYPISERVER_PATH $OSS_BUCKET_PATH --delete
 
     # 等待一定时间
-    sleep $SYNC_TO_OSS_INTERVAL
+    sleep $OSS_CYNC_INTERVAL
 done

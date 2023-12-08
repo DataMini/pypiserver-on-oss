@@ -34,7 +34,7 @@ RUN chmod +x /sync_to_oss.sh
 # 设置环境变量
 ENV OSS_BUCKET_PATH=oss://your-bucket-name/pypi/
 # 同步间隔时间（以秒为单位），这里设为 10 分钟
-ENV SYNC_TO_OSS_INTERVAL=600
+ENV OSS_CYNC_INTERVAL=600
 # 设置 OSS 环境变量
 ENV OSS_ENDPOINT=
 ENV OSS_ACCESS_KEY_ID=
