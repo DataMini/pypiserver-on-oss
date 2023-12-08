@@ -1,8 +1,6 @@
 # 使用 Python 基础镜像
 FROM python:3.8-slim
 
-
-
 # 安装 pypiserver
 RUN pip install pypiserver
 
@@ -12,7 +10,6 @@ RUN apt-get update && apt-get install -y apache2-utils
 
 # 创建一个用于存储用户名和密码的目录
 RUN mkdir /auth
-
 # 创建一个目录来存储包
 RUN mkdir /packages
 
@@ -23,28 +20,25 @@ RUN chmod +x /start_pypiserver.sh
 
 ENV PYPISERVER_USER=
 ENV PYPISERVER_PASSWORD=
-
+ENV PYPISERVER_PATH=/packages
 
 
 # 下载 ossutil
 ADD http://gosspublic.alicdn.com/ossutil/1.7.0/ossutil64 /usr/local/bin/ossutil
 RUN chmod 755 /usr/local/bin/ossutil
-
 # 添加同步脚本
 COPY sync_to_oss.sh /sync_to_oss.sh
 RUN chmod +x /sync_to_oss.sh
 
+
 # 设置环境变量
 ENV OSS_BUCKET_PATH=oss://your-bucket-name/pypi/
-ENV LOCAL_REPO_PATH=/packages
-
 # 同步间隔时间（以秒为单位），这里设为 10 分钟
-ENV SYNC_INTERVAL=600
-
+ENV SYNC_TO_OSS_INTERVAL=600
 # 设置 OSS 环境变量
 ENV OSS_ENDPOINT=
-ENV ACCESS_KEY_ID=
-ENV ACCESS_KEY_SECRET=
+ENV OSS_ACCESS_KEY_ID=
+ENV OSS_ACCESS_KEY_SECRET=
 
 
 # 安装 supervisord
