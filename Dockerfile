@@ -1,8 +1,8 @@
 # 使用 Python 基础镜像
 FROM python:3.8-slim
 
-# 安装 pypiserver
-RUN pip install pypiserver
+# 安装 pypiserver with passlib
+RUN pip install pypiserver['passlib']
 
 # 安装 apache2-utils 来使用 htpasswd
 RUN apt-get update && apt-get install -y apache2-utils
@@ -17,7 +17,8 @@ RUN mkdir /packages
 COPY start_pypiserver.sh /start_pypiserver.sh
 RUN chmod +x /start_pypiserver.sh
 
-
+# 可以是 update,download,list
+ENV PYPISERVER_AUTHENTICATE=update,download
 ENV PYPISERVER_USER=
 ENV PYPISERVER_PASSWORD=
 ENV PYPISERVER_PATH=/packages

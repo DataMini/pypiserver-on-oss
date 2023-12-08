@@ -1,14 +1,29 @@
 # pypiserver-with-oss
+一个使用阿里云OSS作为后端存储的PyPi Server服务器
 
 
 ## 如何运行
 
+### 一、使用docker运行
+
+填上OSS的必要的配置即可。
+
+```
+docker run -d -P \
+    -e OSS_BUCKET_PATH=oss://your-bucket/pypi/ \
+    -e OSS_ENDPOINT=oss-cn-hongkong-internal.aliyuncs.com \
+    -e OSS_ACCESS_KEY_ID=xxx \
+    -e OSS_ACCESS_KEY_SECRET=xxx   \
+    datamini/pypiserver-on-oss
+```
+
+### 二、使用docker-compose运行
+
 示例：
-使用docker-compose运行
 ```yaml
 services:
   pypiserver:
-    image: datamini/pypiserver-on-oss:3.0
+    image: datamini/pypiserver-on-oss
     container_name: pypiserver
     ports:
       - 8080:8080
@@ -27,10 +42,15 @@ services:
 ## 如何使用
 
 
-- 上传
+### 一、从私有仓库安装
+
+> pip install docsbot  -i https://pypi.yourrepo.domain/
 
 
-修改本地 `~/.pypirc`
+### 二、上传包到私有仓库
+
+
+1. 修改本地 `~/.pypirc`
 
 ```
 [distutils]
@@ -38,10 +58,15 @@ index-servers =
     pypi
     your_repo
 
-[datamini]
+[your_repo]
 repository: https://pypi.yourrepo.domain/
 username: username
 password: 123456
 ```
+
+2. 上传包
+
+> twine upload --repository your_repo dist/*
+
 
 
